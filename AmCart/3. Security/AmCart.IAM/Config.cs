@@ -7,15 +7,6 @@ namespace AmCart.IAM
 {
     public class Config
     {
-        // scopes define the API resources in your system
-        public static IEnumerable<ApiResource> GetApiResources()
-        {
-            return new List<ApiResource>
-            {
-                new ApiResource("api1", "My API")
-            };
-        }
-
         // clients want to access resources (aka scopes)
         public static IEnumerable<Client> GetClients()
         {
@@ -30,7 +21,7 @@ namespace AmCart.IAM
                     RequireConsent = false,
 
                     // where to redirect to after login
-                    RedirectUris = { "http://localhost:62570/signin-oidc" },
+                    RedirectUris = { "http://localhost:4300/" },
 
                     // where to redirect to after logout
                     PostLogoutRedirectUris = { "http://localhost:62570" },
@@ -39,7 +30,9 @@ namespace AmCart.IAM
                     {
                         IdentityServerConstants.StandardScopes.OpenId,
                         IdentityServerConstants.StandardScopes.Profile
-                    }
+                    },
+
+                    AllowAccessTokensViaBrowser = true
                 }
             };
         }
