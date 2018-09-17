@@ -17,7 +17,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AmCart.Domain", "4. Foundat
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AmCart.IAM", "3. Security\AmCart.IAM\AmCart.IAM.csproj", "{2FE684A5-C66B-42C7-B7CB-02DDCE06A215}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AmCart.WebAPI", "AmCart.WebAPI\AmCart.WebAPI.csproj", "{BE547F47-49D7-4F0B-9C2D-BA339107CF86}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AmCart.WebAPI", "1. Service\AmCart.WebAPI\AmCart.WebAPI.csproj", "{BE547F47-49D7-4F0B-9C2D-BA339107CF86}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
