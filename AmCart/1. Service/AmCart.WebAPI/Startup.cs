@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace AmCart.IAM
+namespace AmCart.WebAPI
 {
     public class Startup
     {
@@ -17,15 +17,16 @@ namespace AmCart.IAM
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddMvc();
-            services.AddCors();
+            services.AddMvcCore()
+                .AddAuthorization()
+                .AddJsonFormatters();
 
-            // configure identity server with in-memory stores, keys, clients and scopes
-            services.AddIdentityServer()
-                .AddDeveloperSigningCredential()
-                .AddInMemoryIdentityResources(Config.GetIdentityResources())
-                .AddInMemoryClients(Config.GetClients())
-                .AddTestUsers(Config.GetUsers());
+            services.AddAuthentication("Bearer")
+                .AddIdentityServerAuthentication(options =>
+                {
+                    options.Authority = "http://localhost:50541";
+                    options.RequireHttpsMetadata = false;
+                });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -36,10 +37,9 @@ namespace AmCart.IAM
                 app.UseDeveloperExceptionPage();
             }
 
-            app.UseCors(builder => builder.WithOrigins("*"));
-            app.UseIdentityServer();
+            app.UseAuthentication();
             app.UseStaticFiles();
-            app.UseMvcWithDefaultRoute();
+            app.UseMvc();
         }
     }
 }
